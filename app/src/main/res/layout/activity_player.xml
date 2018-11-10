@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4d4645"
+    android:orientation="vertical"
+    tools:context=".PlayerActivity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="2"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <SeekBar
+            android:id="@+id/sbVolume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+
+        <ImageButton
+            android:id="@+id/previousSongButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/previous"
+            android:onClick="buttonClick"
+            android:scaleType="fitXY" />
+
+
+        <ImageButton
+            android:id="@+id/backwardButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/backward"
+            android:onClick="buttonClick"
+            android:scaleType="fitXY" />
+
+        <ImageButton
+            android:id="@+id/pauseButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/play_button"
+            android:onClick="buttonClick"
+            android:scaleType="fitXY" />
+
+
+        <ImageButton
+            android:id="@+id/forwardButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/fast_forward"
+            android:onClick="buttonClick"
+            android:scaleType="fitXY" />
+
+
+        <ImageButton
+            android:id="@+id/nextSongButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/skip"
+            android:onClick="buttonClick"
+            android:scaleType="fitXY" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
