@@ -8,7 +8,7 @@
     android:background="@drawable/player"
     android:gravity="bottom"
     android:orientation="vertical"
-    tools:context=".SplashActivity">
+    tools:context=".activity.SplashActivity">
 
 
     <TextView

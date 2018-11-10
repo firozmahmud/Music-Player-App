@@ -1,4 +1,4 @@
-package com.example.firoz.musicplayerapp;
+package com.example.firoz.musicplayerapp.activity;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -10,10 +10,12 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.example.firoz.musicplayerapp.R;
+
 import java.io.File;
 import java.util.ArrayList;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayMusicActivity extends AppCompatActivity {
 
 
     private ArrayList<File> songs;
@@ -65,7 +67,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     private void initView() {
 
-        setContentView(R.layout.activity_player);
+        setContentView(R.layout.activity_play_music);
 
         pauseBtn = findViewById(R.id.pauseButton);
         sbVolume = findViewById(R.id.sbVolume);
@@ -154,6 +156,7 @@ public class PlayerActivity extends AppCompatActivity {
 
                 break;
             case R.id.previousSongButton:
+
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 if (position == 0) {
@@ -192,6 +195,7 @@ public class PlayerActivity extends AppCompatActivity {
             while (currectPosition < totalDuration) {
 
                 try {
+
                     Thread.sleep(500);
 
                     if (mediaPlayer != null)
@@ -200,8 +204,11 @@ public class PlayerActivity extends AppCompatActivity {
 
                     if (sbVolume != null)
                         sbVolume.setProgress(currectPosition);
+
                 } catch (InterruptedException e) {
+
                     e.printStackTrace();
+
                 } catch (Exception e) {
 
                 }

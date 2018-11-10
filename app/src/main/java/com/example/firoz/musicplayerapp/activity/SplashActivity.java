@@ -1,4 +1,4 @@
-package com.example.firoz.musicplayerapp;
+package com.example.firoz.musicplayerapp.activity;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -10,10 +10,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.firoz.musicplayerapp.R;
+
 public class SplashActivity extends AppCompatActivity {
 
-    private LinearLayout layout;
-    private TextView textView;
+    private LinearLayout parentLayout;
+    private TextView titleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,20 +26,20 @@ public class SplashActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        layout = findViewById(R.id.parent);
-        textView = findViewById(R.id.txt);
+        parentLayout = findViewById(R.id.parent);
+        titleTextView = findViewById(R.id.txt);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.my_animation);
 
-        layout.startAnimation(animation);
-        textView.setAnimation(animation);
+        parentLayout.startAnimation(animation);
+        titleTextView.setAnimation(animation);
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, SongListActivity.class));
                 SplashActivity.this.finish();
 
             }

@@ -1,4 +1,4 @@
-package com.example.firoz.musicplayerapp;
+package com.example.firoz.musicplayerapp.activity;
 
 import android.content.Intent;
 import android.os.Environment;
@@ -10,10 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.firoz.musicplayerapp.R;
+
 import java.io.File;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class SongListActivity extends AppCompatActivity {
 
     private ListView playerList;
     private String[] allSongs;
@@ -29,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        setContentView(R.layout.activity_main);
-        playerList = findViewById(R.id.lvPlayerList);
-
+        setContentView(R.layout.activity_song_list);
         setTitle("My Player");
+
+        playerList = findViewById(R.id.lvPlayerList);
 
     }
 
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                startActivity(new Intent(MainActivity.this, PlayerActivity.class).putExtra("position", position).putExtra("songs", mySongs));
+                startActivity(new Intent(SongListActivity.this, PlayMusicActivity.class).putExtra("position", position).putExtra("songs", mySongs));
             }
         });
 
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         previousTime = currentTime;
         currentTime = System.currentTimeMillis();
 
-        if ((currentTime - previousTime) < 200) {
+        if ((currentTime - previousTime) < 250) {
             finish();
         } else {
             Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
@@ -117,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (PlayerActivity.mediaPlayer != null) {
-            PlayerActivity.mediaPlayer.stop();
-            PlayerActivity.mediaPlayer.release();
+        if (PlayMusicActivity.mediaPlayer != null) {
+            PlayMusicActivity.mediaPlayer.stop();
+            PlayMusicActivity.mediaPlayer.release();
         }
     }
 }
