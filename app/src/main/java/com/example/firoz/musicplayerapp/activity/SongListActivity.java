@@ -1,7 +1,12 @@
 package com.example.firoz.musicplayerapp.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,6 +44,16 @@ public class SongListActivity extends AppCompatActivity {
     }
 
     private void loadSongs() {
+
+
+        if (Build.VERSION.SDK_INT >= 23)
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
+
+                return;
+            }
+
 
         final ArrayList<File> mySongs = findSongs(Environment.getExternalStorageDirectory());
 
@@ -79,22 +94,24 @@ public class SongListActivity extends AppCompatActivity {
         // --- get all file into an array
         File[] files = root.listFiles();
 
-        for (File singleFile : files) {
+        if (files != null)
+            for (File singleFile : files) {
 
-            if (singleFile.isDirectory() && !singleFile.isHidden()) {
+                if (singleFile.isDirectory() && !singleFile.isHidden()) {
 
-                allsongs.addAll(findSongs(singleFile));
+                    allsongs.addAll(findSongs(singleFile));
 
-            } else {
-                if (singleFile.getName().endsWith(".mp3")) {
+                } else {
+                    if (singleFile.getName().endsWith(".mp3")) {
 
-                    // --- add this mp3 into the arraylist
-                    allsongs.add(singleFile);
+                        // --- add this mp3 into the arraylist
+                        allsongs.add(singleFile);
 
+                    }
                 }
+
             }
 
-        }
 
         return allsongs;
     }
@@ -123,5 +140,24 @@ public class SongListActivity extends AppCompatActivity {
             PlayMusicActivity.mediaPlayer.stop();
             PlayMusicActivity.mediaPlayer.release();
         }
+
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+
+        if (requestCode == 100 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+           loadSongs();
+
+        } else {
+
+            Toast.makeText(this, "Not Permitted", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
